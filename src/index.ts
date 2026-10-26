@@ -1,24 +1,32 @@
-const productName: string = "キーボード";
-const unitPrice: number = 4800;
-const quantity: number = 2;
-const inStock: boolean = true;
+const todos = [
+  { id: 1, title: "型を復習する", completed: true },
+  { id: 2, title: "配列を学ぶ", completed: false },
+  { id: 3, title: "レポートを書く", completed: true },
+];
 
-console.log(productName, unitPrice, quantity, inStock);
+for (const todo of todos) {
+    const status = todo.completed ? "完了" : "未完了";
+    console.log(`ID: ${todo.id}, タイトル: ${todo.title}, ステータス: [${status}]`);
+}
 
-const subtotal = unitPrice * quantity;
-const taxRate = 0.1;
-const total = subtotal * (1 + taxRate);
+const completedTodos = todos.filter((todo) => {
+    return todo.completed;
+}).length
 
-console.log(total);
+console.log(completedTodos);
 
-const message: string = `商品名: ${productName}を${quantity}個購入しました。合計金額は${total}円です。`
+const todoTitles = todos.map((todo) => {
+    return todo.title;
+});
 
-console.log(message);
+console.log(todoTitles);
 
-const courseName = "Web Engineering";
-let retryCount = 1;
-
-retryCount = 2;
-
-console.log(`Course: ${courseName}`);
-console.log(`Retry count: ${retryCount}`);
+const completedBefore = todos.filter((todo) => todo.completed).length;
+for (const todo of todos) {
+    if (todo.completed === false) {
+        todo.completed = true;
+        console.log(`更新後: ${todo.title} [完了]`);
+    }
+}
+const completedAfter = todos.filter((todo) => todo.completed).length;
+console.log(`完了件数: 更新前 ${completedBefore}件 -> 更新後 ${completedAfter}件`);
